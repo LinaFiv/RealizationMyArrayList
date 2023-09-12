@@ -1,11 +1,13 @@
 package org.example;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Comparator;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class RealizationMyArrayListTest {
     private static final RealizationMyArrayList<Integer> arr = new RealizationMyArrayList<>();
@@ -112,5 +114,10 @@ class RealizationMyArrayListTest {
     @Test
     void testReplaceNegativeIndex() {
         assertThrows(ArrayIndexOutOfBoundsException.class, () -> arr.replace(-1, 10));
+    }
+
+    @AfterEach
+    void teardown() {
+        arr.clear();
     }
 }
