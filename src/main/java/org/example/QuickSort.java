@@ -3,9 +3,17 @@ package org.example;
 import java.util.Comparator;
 
 /**
- *
+ * Class for sorting arrays.
  */
 public class QuickSort {
+    /**
+     * Sorts the input array using a quick sort.
+     *
+     * @param arr input array.
+     * @param from beginning of array sorting.
+     * @param to end of array sorting.
+     * @param comparator Comparator for sorting values in the array.
+     */
     public void quickSort(Object[] arr, int from, int to,
                           Comparator<Object> comparator) {
         if (from < to) {

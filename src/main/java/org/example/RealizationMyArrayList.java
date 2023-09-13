@@ -5,8 +5,9 @@ import java.util.Comparator;
 import java.util.Objects;
 
 /**
+ * Resizable-array implementation of the {@link MyList} interface.
  *
- * @param <E>
+ * @param <E> the type of elements in this array.
  */
 public class RealizationMyArrayList<E> implements MyList {
     private int size;
@@ -24,27 +25,37 @@ public class RealizationMyArrayList<E> implements MyList {
         this.arr = new Object[DEFAULT_CAPACITY];
     }
 
+    /**
+     * Returns the size of the array.
+     *
+     * @return size of the array.
+     */
     @Override
     public int size() {
         return size;
     }
 
+    /**
+     * Adds a new value to the end of the array.
+     *
+     * @param value new value to add.
+     */
     @Override
-    public void add(Object values) {
+    public void add(Object value) {
         if (size == arr.length) {
             resize(arr.length * 2);
         }
-        arr[size++] = values;
+        arr[size++] = value;
     }
 
-    private void resize(int newLength) {
-        Object[] newArray = new Object[newLength];
-        System.arraycopy(arr, 0, newArray, 0, size);
-        arr = newArray;
-    }
-
+    /**
+     * Adds a new value by index of the array.
+     *
+     * @param indexToInsert index where the value to be inserted.
+     * @param value new value to add.
+     */
     @Override
-    public void add(int indexToInsert, Object values) {
+    public void add(int indexToInsert, Object value) {
         if (size == arr.length) {
             resize(arr.length * 2);
         }
@@ -55,15 +66,39 @@ public class RealizationMyArrayList<E> implements MyList {
             arr[i] = temp;
             index--;
         }
-        arr[indexToInsert] = values;
+        arr[indexToInsert] = value;
     }
 
+    /**
+     * Changes the size of the array when it is filled.
+     *
+     * @param newLength new array length.
+     */
+    private void resize(int newLength) {
+        Object[] newArray = new Object[newLength];
+        System.arraycopy(arr, 0, newArray, 0, size);
+        arr = newArray;
+    }
+
+    /**
+     * Returns a value from the array by index.
+     *
+     * @param index index of the value to be received.
+     * @return value from the array by index.
+     * @throws ArrayIndexOutOfBoundsException if the index is outside the bounds of the array.
+     */
     @Override
     public Object get(int index) {
         if (size > index) return arr[index];
         else throw new ArrayIndexOutOfBoundsException();
     }
 
+    /**
+     * Removes a value from the array by index.
+     *
+     * @param index index of the value to be deleted.
+     * @throws ArrayIndexOutOfBoundsException if the index is outside the bounds of the array.
+     */
     @Override
     public void delete(int index) {
         if (size > index) {
@@ -74,6 +109,9 @@ public class RealizationMyArrayList<E> implements MyList {
         } else throw new ArrayIndexOutOfBoundsException();
     }
 
+    /**
+     * Clears the array.
+     */
     @Override
     public void clear() {
         Object[] clearArray = arr;
@@ -83,15 +121,27 @@ public class RealizationMyArrayList<E> implements MyList {
         }
     }
 
+    /**
+     * Sorts the array using {@link QuickSort}.
+     *
+     * @param comparator Comparator for sorting values in the array.
+     */
     @Override
-    public void sort(Comparator c) {
-        quickSort.quickSort(arr, 0, size - 1, c);
+    public void sort(Comparator comparator) {
+        quickSort.quickSort(arr, 0, size - 1, comparator);
     }
 
+    /**
+     * Replaces a value from the array by index.
+     *
+     * @param index index of the value to be replaced.
+     * @param value new value to insert.
+     * @throws ArrayIndexOutOfBoundsException if the index is outside the bounds of the array.
+     */
     @Override
-    public void replace(int index, Object values) {
+    public void replace(int index, Object value) {
         if (size > index) {
-            arr[index] = values;
+            arr[index] = value;
         } else throw new ArrayIndexOutOfBoundsException();
     }
 

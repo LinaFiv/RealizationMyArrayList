@@ -9,7 +9,10 @@ import java.util.Comparator;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class RealizationMyArrayListTest {
+/**
+ * Base class for testing {@link RealizationMyArrayList}
+ */
+public class RealizationMyArrayListTest {
     private static final RealizationMyArrayList<Integer> arr = new RealizationMyArrayList<>();
 
     @BeforeEach
