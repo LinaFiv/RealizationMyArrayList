@@ -11,18 +11,22 @@ import java.util.Objects;
  */
 public class RealizationMyArrayList<E> implements MyList {
     private int size;
+
+    private int capacity;
     private static final int DEFAULT_CAPACITY = 16;
     private final QuickSort quickSort = new QuickSort();
     private Object[] arr;
 
     public RealizationMyArrayList(int capacity) {
         if (capacity > 0) {
+            this.capacity = capacity;
             this.arr = new Object[capacity];
         } else throw new IllegalArgumentException("Capacity cannot be less than 1");
     }
 
     public RealizationMyArrayList() {
-        this.arr = new Object[DEFAULT_CAPACITY];
+        capacity = DEFAULT_CAPACITY;
+        this.arr = new Object[capacity];
     }
 
     /**
@@ -42,8 +46,8 @@ public class RealizationMyArrayList<E> implements MyList {
      */
     @Override
     public void add(Object value) {
-        if (size == arr.length) {
-            resize(arr.length * 2);
+        if (size + 1 >= capacity) {
+            increaseCapacity();
         }
         arr[size++] = value;
     }
@@ -52,30 +56,28 @@ public class RealizationMyArrayList<E> implements MyList {
      * Adds a new value by index of the array.
      *
      * @param indexToInsert index where the value to be inserted.
-     * @param value new value to add.
+     * @param value         new value to add.
+     * @throws ArrayIndexOutOfBoundsException if the index is outside the bounds of the array.
      */
     @Override
     public void add(int indexToInsert, Object value) {
-        if (size == arr.length) {
-            resize(arr.length * 2);
+        if (indexToInsert > size) throw new ArrayIndexOutOfBoundsException();
+        if (size + 1 >= capacity) {
+            increaseCapacity();
         }
-        int index = size;
         size++;
-        for (int i = size; i > indexToInsert; i--) {
-            Object temp = arr[index];
-            arr[i] = temp;
-            index--;
+        for (int i = size - 1; i > indexToInsert; i--) {
+            arr[i] = arr[i - 1];
         }
         arr[indexToInsert] = value;
     }
 
     /**
-     * Changes the size of the array when it is filled.
-     *
-     * @param newLength new array length.
+     * Changes the capacity of the array when it is filled.
      */
-    private void resize(int newLength) {
-        Object[] newArray = new Object[newLength];
+    private void increaseCapacity() {
+        capacity *= 2;
+        Object[] newArray = new Object[capacity];
         System.arraycopy(arr, 0, newArray, 0, size);
         arr = newArray;
     }

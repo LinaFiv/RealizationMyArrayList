@@ -9,9 +9,9 @@ public class QuickSort {
     /**
      * Sorts the input array using a quick sort.
      *
-     * @param arr input array.
-     * @param from beginning of array sorting.
-     * @param to end of array sorting.
+     * @param arr        input array.
+     * @param from       beginning of array sorting.
+     * @param to         end of array sorting.
      * @param comparator Comparator for sorting values in the array.
      */
     public void quickSort(Object[] arr, int from, int to,
@@ -32,7 +32,7 @@ public class QuickSort {
             while (comparator.compare(arr[leftIndex], pivot) < 0) {
                 leftIndex++;
             }
-            while (comparator.compare(arr[rightIndex], pivot) > 0 ) {
+            while (comparator.compare(arr[rightIndex], pivot) > 0) {
                 rightIndex--;
             }
 

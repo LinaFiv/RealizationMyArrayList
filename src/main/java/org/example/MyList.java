@@ -30,7 +30,7 @@ public interface MyList<E> {
      * Adds a new element by index of the list.
      *
      * @param index index where the element to be inserted.
-     * @param e new element to add.
+     * @param e     new element to add.
      */
     void add(int index, E e);
 
@@ -65,7 +65,7 @@ public interface MyList<E> {
      * Replaces the element from the list by index.
      *
      * @param index index of the element to be replaced.
-     * @param e new element to insert.
+     * @param e     new element to insert.
      */
     void replace(int index, E e);
 }

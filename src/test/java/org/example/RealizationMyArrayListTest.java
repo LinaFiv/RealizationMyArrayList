@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * Base class for testing {@link RealizationMyArrayList}
  */
 public class RealizationMyArrayListTest {
-    private static final RealizationMyArrayList<Integer> arr = new RealizationMyArrayList<>();
+    private static final RealizationMyArrayList<Object> arr = new RealizationMyArrayList<>();
 
     @BeforeEach
     void setUp() {
@@ -44,10 +44,22 @@ public class RealizationMyArrayListTest {
         assertEquals(5, arr.size());
     }
 
+    @Test
+    void testAddIndexTenThousand() {
+        arr.clear();
+
+        for (int i = 0; i < 10000; i++) {
+            arr.add(0, new Object());
+        }
+
+        assertEquals(10000, arr.size());
+    }
+
     @Test()
     void testAddIndexNotFound() {
         assertThrows(ArrayIndexOutOfBoundsException.class, () -> arr.add(17, 5));
     }
+
     @Test()
     void testAddNegativeIndex() {
         assertThrows(ArrayIndexOutOfBoundsException.class, () -> arr.add(-1, 5));
@@ -57,6 +69,7 @@ public class RealizationMyArrayListTest {
     void testGet() {
         assertEquals(4, arr.get(2));
     }
+
     @Test
     void testGetNotFoundIndex() {
         assertThrows(ArrayIndexOutOfBoundsException.class, () -> arr.get(10));
